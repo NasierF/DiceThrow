@@ -14,9 +14,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val button = findViewById<Button>(R.id.rollDiceButton)
         val fragment1 = DieFragment.newInstance(100)
-        supportFragmentManager.beginTransaction().add(R.id.DiceContainer, fragment1).commit()
-         button.setOnClickListener{
-             (supportFragmentManager.findFragmentById(R.id.DiceContainer) as DieFragment).throwDie()
+
+            if (supportFragmentManager.findFragmentById(R.id.DiceContainer) !is DieFragment){
+
+                supportFragmentManager.beginTransaction().add(R.id.DiceContainer, fragment1).commit()
+                button.setOnClickListener {
+                (supportFragmentManager.findFragmentById(R.id.DiceContainer) as DieFragment).throwDie()
+                }
 
 
          }
